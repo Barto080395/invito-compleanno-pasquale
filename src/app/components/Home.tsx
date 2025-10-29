@@ -6,7 +6,6 @@ import RSVPForm from "./RSVPForm";
 import Image from "next/image";
 import { ConfettiComponent } from "./Confetto";
 
-// Animazioni
 const bounce = keyframes`
   0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
   40% { transform: translateY(-15px); }
