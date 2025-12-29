@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { ConfettiComponent } from "../components/Confetto";
 import { StatusMessage } from "../components/Message";
 import Link from "next/link";
+import Rocket from "../components/Rocket";
 
 // Animazione gradienti
 const gradientAnimation = keyframes`
@@ -120,6 +121,12 @@ const ButtonGrid = styled.div`
 `;
 
 const Button = styled.button`
+  position: relative; /* 🔥 fondamentale per il posizionamento del razzo */
+  overflow: visible;  /* assicura che il razzo non venga tagliato */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   padding: 0.7rem 0.9rem;
   border-radius: 16px;
   border: none;
@@ -135,9 +142,11 @@ const Button = styled.button`
 
   &:hover {
     transform: scale(1.08);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6), inset 0 -3px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6),
+      inset 0 -3px 8px rgba(0, 0, 0, 0.3);
   }
 `;
+
 
 const ButtonRemove = styled.button`
   padding: 0.7rem 1.5rem;
@@ -154,7 +163,8 @@ const ButtonRemove = styled.button`
 
   &:hover {
     transform: scale(1.08);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6), inset 0 -3px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6),
+      inset 0 -3px 8px rgba(0, 0, 0, 0.3);
   }
 `;
 
@@ -177,11 +187,21 @@ export type Partecipante = {
 };
 
 export default function FormPage() {
-  const [partecipanti, setPartecipanti] = useState<Partecipante[]>([{ id: 1, name: "", surname: "", tipo: "Adulto", menu: "Standard", intolerance: "Nessuna" }]);
+  const [partecipanti, setPartecipanti] = useState<Partecipante[]>([
+    {
+      id: 1,
+      name: "",
+      surname: "",
+      tipo: "Adulto",
+      menu: "Standard",
+      intolerance: "Nessuna",
+    },
+  ]);
   const [notes, setNotes] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [error, setError] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isLaunching, setIsLaunching] = useState(false);
   const statusRef = useRef<HTMLDivElement>(null);
 
   // Poi usa un useEffect che scrolla quando confermato o errore
@@ -195,8 +215,14 @@ export default function FormPage() {
 
   if (!mounted) return null;
 
-  const handlePartecipanteChange = (id: number, field: keyof Partecipante, value: any) => {
-    setPartecipanti((prev) => prev.map((p) => (p.id === id ? { ...p, [field]: value } : p)));
+  const handlePartecipanteChange = (
+    id: number,
+    field: keyof Partecipante,
+    value: any
+  ) => {
+    setPartecipanti((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, [field]: value } : p))
+    );
   };
 
   const addPartecipante = (tipo: "Adulto" | "Bambino") => {
@@ -217,31 +243,46 @@ export default function FormPage() {
     setPartecipanti((prev) => prev.filter((p) => p.id !== id));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("/api/rsvp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ partecipanti, notes }),
-      });
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-      if (!res.ok) throw new Error("Errore nella conferma");
+  // Mostra il razzo prima di inviare
+  setIsLaunching(true);
 
-      setConfirmed(true);
-      setError(false);
-    } catch (err) {
-      console.error(err);
-      setError(true);
-      setConfirmed(false);
-    }
-  };
+  // Attendi 1 secondo per dare tempo all'animazione
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  try {
+    const res = await fetch("/api/rsvp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ partecipanti, notes }),
+    });
+
+    if (!res.ok) throw new Error("Errore nella conferma");
+
+    setConfirmed(true);
+    setError(false);
+  } catch (err) {
+    console.error(err);
+    setError(true);
+    setConfirmed(false);
+  } finally {
+    setIsLaunching(false); // ferma il razzo
+  }
+};
+
 
   return (
     <Container>
       {(confirmed || error) && (
         <div ref={statusRef}>
-          <StatusMessage success={confirmed} error={error} name={confirmed ? partecipanti[0].name : undefined} surname={confirmed ? partecipanti[0].surname : undefined} />
+          <StatusMessage
+            success={confirmed}
+            error={error}
+            name={confirmed ? partecipanti[0].name : undefined}
+            surname={confirmed ? partecipanti[0].surname : undefined}
+          />
         </div>
       )}
       {!confirmed && !error && (
@@ -251,17 +292,38 @@ export default function FormPage() {
             <ParticipantCard key={p.id}>
               <Field>
                 <Label>Nome 👤</Label>
-                <Input type="text" placeholder="Mario" value={p.name} onChange={(e) => handlePartecipanteChange(p.id, "name", e.target.value)} required />
+                <Input
+                  type="text"
+                  placeholder="Mario"
+                  value={p.name}
+                  onChange={(e) =>
+                    handlePartecipanteChange(p.id, "name", e.target.value)
+                  }
+                  required
+                />
               </Field>
 
               <Field>
                 <Label>Cognome 🏷️</Label>
-                <Input type="text" placeholder="Rossi" value={p.surname} onChange={(e) => handlePartecipanteChange(p.id, "surname", e.target.value)} required />
+                <Input
+                  type="text"
+                  placeholder="Rossi"
+                  value={p.surname}
+                  onChange={(e) =>
+                    handlePartecipanteChange(p.id, "surname", e.target.value)
+                  }
+                  required
+                />
               </Field>
 
               <Field>
                 <Label>Tipologia di menù 🍽️</Label>
-                <Select value={p.menu} onChange={(e) => handlePartecipanteChange(p.id, "menu", e.target.value)}>
+                <Select
+                  value={p.menu}
+                  onChange={(e) =>
+                    handlePartecipanteChange(p.id, "menu", e.target.value)
+                  }
+                >
                   {p.tipo === "Bambino" ? (
                     <option value="Bambini">Bambini</option>
                   ) : (
@@ -279,7 +341,16 @@ export default function FormPage() {
 
               <Field>
                 <Label>Intolleranze ⚠️</Label>
-                <Select value={p.intolerance} onChange={(e) => handlePartecipanteChange(p.id, "intolerance", e.target.value)}>
+                <Select
+                  value={p.intolerance}
+                  onChange={(e) =>
+                    handlePartecipanteChange(
+                      p.id,
+                      "intolerance",
+                      e.target.value
+                    )
+                  }
+                >
                   <option value="Nessuna">Nessuna</option>
                   <option value="Glutine">Glutine</option>
                   <option value="Lattosio">Lattosio</option>
@@ -296,13 +367,19 @@ export default function FormPage() {
                 <ButtonRemove
                   type="button"
                   onClick={(e) => {
-                    const card = (e.currentTarget as HTMLButtonElement).closest("div"); 
+                    const card = (e.currentTarget as HTMLButtonElement).closest(
+                      "div"
+                    );
                     removePartecipante(p.id);
 
                     // scrolla al prossimo partecipante rimasto
-                    const nextCard = card?.nextElementSibling as HTMLElement | null;
+                    const nextCard =
+                      card?.nextElementSibling as HTMLElement | null;
                     if (nextCard) {
-                      nextCard.scrollIntoView({ behavior: "smooth", block: "start" });
+                      nextCard.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
                     }
                   }}
                 >
@@ -314,21 +391,35 @@ export default function FormPage() {
 
           <ButtonGrid>
             <Button type="button" onClick={() => addPartecipante("Adulto")}>
-             ➕ Adulto
+              ➕ Adulto
             </Button>
             <Button type="button" onClick={() => addPartecipante("Bambino")}>
-             ➕ Bambino
+              ➕ Bambino
             </Button>
           </ButtonGrid>
           <Field>
             <Label>Note aggiuntive 📝</Label>
-            <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Scrivi qui eventuali richieste particolari..." />
+            <Textarea
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="Scrivi qui eventuali richieste particolari..."
+            />
           </Field>
           <ButtonGrid>
             <Link href="/" passHref>
               <Button>Indietro</Button>
             </Link>
-            <Button type="submit">Conferma</Button>
+            <Button
+              type="submit"
+              aria-disabled={isLaunching}
+              onClick={() => setIsLaunching(true)}
+            >
+              <span style={{ flex: 1, textAlign: "center" }}>Conferma</span>
+              <Rocket
+                isLaunching={isLaunching}
+                style={{ right: 10, top: "50%" }}
+              />
+            </Button>
           </ButtonGrid>
         </Form>
       )}

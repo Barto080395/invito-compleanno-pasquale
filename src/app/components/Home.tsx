@@ -30,7 +30,6 @@ const glow = keyframes`
   100% { box-shadow: 0 0 10px #ff69b4; }
 `;
 
-
 const Container = styled.div`
   position: relative;
   text-align: center;
@@ -70,7 +69,8 @@ const BigOne = styled.div`
   text-decoration: underline; /* sottolineato */
   text-underline-offset: 10px; /* distanza dal testo per renderlo più bello */
   color: #ff1493; /* rosa acceso */
-  text-shadow: 0 0 25px rgba(255, 20, 147, 0.8), 0 0 50px rgba(255, 105, 180, 0.6);
+  text-shadow: 0 0 25px rgba(255, 20, 147, 0.8),
+    0 0 50px rgba(255, 105, 180, 0.6);
   animation: ${bounce} 3s infinite;
 `;
 
@@ -136,18 +136,27 @@ const Location = styled.a`
   }
 `;
 
-
 export default function Home() {
-  const targetDate = "2026-01-17T19:00:00";
+  const targetDate = "2026-01-18T13:00:00";
 
   return (
     <Container>
       <Title>Il primo compleanno di Rossella! 🥳🎉</Title>
       <Photo>
-        <Image src="/rosa.jpeg" alt="Rossella" width={220} height={220} style={{ objectFit: "cover" }} priority />
+        <Image
+          src="/rosa.jpeg"
+          alt="Rossella"
+          width={220}
+          height={220}
+          style={{ objectFit: "cover" }}
+          priority
+        />
       </Photo>
-      <Message>Vuoi venire al mio primo compleanno? 🎂 Ti aspetto con tanta gioia, non mancare! 💖 Sarà una festa piena di sorrisi e divertimento! ✨</Message>
-      <DateInfo>17 Gennaio 2026 alle 19:00</DateInfo>
+      <Message>
+        Vuoi venire al mio primo compleanno? 🎂 Ti aspetto con tanta gioia, non
+        mancare! 💖 Sarà una festa piena di sorrisi e divertimento! ✨
+      </Message>
+      <DateInfo>18 Gennaio 2026 alle 13:00</DateInfo>
       <CountdownWrapper>
         <Countdown targetDate={targetDate} />
         <BigOne>1 Anno!! 🎈</BigOne>
@@ -155,8 +164,12 @@ export default function Home() {
       <RSVPWrapper>
         <RSVPForm />
       </RSVPWrapper>
-      <Location href="https://www.google.com/maps?q=Via+Roma,+40,+PorticodiCaserta" target="_blank" rel="noopener noreferrer">
-        📍 Via Roma, 40, Portico di Caserta
+      <Location
+        href="https://www.google.com/maps?q=Strada+Provinciale+333+19,+81041+Triflisco+CE,+Italia"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        📍 Hostaria Mamma Rosa, 19, Triflisco (Bellona) CE, Italia
       </Location>
       <ConfettiComponent />
     </Container>
