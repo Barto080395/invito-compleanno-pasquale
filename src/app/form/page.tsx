@@ -116,9 +116,13 @@ const Textarea = styled.textarea`
 const ButtonGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem; /* spazio tra i bottoni */
-  width: 100%;
+  gap: 1rem;
+
+  @media (max-width: 435px) {
+    grid-template-columns: 1fr; /* forza una colonna sotto i 420px */
+  }
 `;
+
 
 const Button = styled.button`
   position: relative; /* 🔥 fondamentale per il posizionamento del razzo */
