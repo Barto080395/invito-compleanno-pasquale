@@ -62,16 +62,22 @@ const Title = styled.h1`
   animation: ${bounce} 2s infinite, ${scaleTitle} 3s infinite alternate;
 `;
 
+const bounceNumber = keyframes`
+  0%, 50%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-10px); }
+  75% { transform: translateY(-5px); }
+`;
+
 const BigOne = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
-  font-style: italic; /* corsivo */
-  text-decoration: underline; /* sottolineato */
-  text-underline-offset: 10px; /* distanza dal testo per renderlo più bello */
-  color: #ff1493; /* rosa acceso */
+  font-style: italic;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  color: #ff1493;
   text-shadow: 0 0 25px rgba(255, 20, 147, 0.8),
     0 0 50px rgba(255, 105, 180, 0.6);
-  animation: ${bounce} 3s infinite;
+  animation: ${bounceNumber} 2s infinite;
 `;
 
 export const Message = styled.p`
@@ -103,10 +109,18 @@ const Photo = styled.div`
   }
 `;
 
+const glowDate = keyframes`
+  0% { text-shadow: 0 0 5px #ff1493; }
+  50% { text-shadow: 0 0 15px #ff69b4; }
+  100% { text-shadow: 0 0 5px #ff1493; }
+`;
+
 const DateInfo = styled.p`
-  font-size: 1.5rem;
-  color: #333;
+  font-size: 1.7rem;
+  color: #ff1493; /* rosa acceso */
   font-weight: bold;
+  text-shadow: 2px 2px 10px rgba(255, 20, 147, 0.7);
+  animation: ${glowDate} 2s infinite alternate;
 `;
 
 const CountdownWrapper = styled.div`
@@ -156,16 +170,16 @@ export default function Home() {
         Vuoi venire al mio primo compleanno? 🎂 Ti aspetto con tanta gioia, non
         mancare! 💖 Sarà una festa piena di sorrisi e divertimento! ✨
       </Message>
-      <DateInfo>18 Gennaio 2026 alle 13:00</DateInfo>
+      <DateInfo>18 Gennaio 2026 ore 13:00</DateInfo>
       <CountdownWrapper>
         <Countdown targetDate={targetDate} />
-        <BigOne>1 Anno!! 🎈</BigOne>
+        <BigOne>1° Anno! 🎈</BigOne>
       </CountdownWrapper>
       <RSVPWrapper>
         <RSVPForm />
       </RSVPWrapper>
       <Location
-        href="https://www.google.com/maps?q=Strada+Provinciale+333+19,+81041+Triflisco+CE,+Italia"
+        href="https://www.google.com/maps?q=Hosteria+Mamma+Rosa,+81041+Triflisco+CE,+Italia"
         target="_blank"
         rel="noopener noreferrer"
       >
