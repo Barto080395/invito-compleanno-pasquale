@@ -123,10 +123,9 @@ const ButtonGrid = styled.div`
   }
 `;
 
-
 const Button = styled.button`
   position: relative; /* 🔥 fondamentale per il posizionamento del razzo */
-  overflow: visible;  /* assicura che il razzo non venga tagliato */
+  overflow: visible; /* assicura che il razzo non venga tagliato */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,7 +149,6 @@ const Button = styled.button`
       inset 0 -3px 8px rgba(0, 0, 0, 0.3);
   }
 `;
-
 
 const ButtonRemove = styled.button`
   padding: 0.7rem 1.5rem;
@@ -247,35 +245,34 @@ export default function FormPage() {
     setPartecipanti((prev) => prev.filter((p) => p.id !== id));
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  // Mostra il razzo prima di inviare
-  setIsLaunching(true);
+    // Mostra il razzo prima di inviare
+    setIsLaunching(true);
 
-  // Attendi 1 secondo per dare tempo all'animazione
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Attendi 1 secondo per dare tempo all'animazione
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  try {
-    const res = await fetch("/api/rsvp", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ partecipanti, notes }),
-    });
+    try {
+      const res = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ partecipanti, notes }),
+      });
 
-    if (!res.ok) throw new Error("Errore nella conferma");
+      if (!res.ok) throw new Error("Errore nella conferma");
 
-    setConfirmed(true);
-    setError(false);
-  } catch (err) {
-    console.error(err);
-    setError(true);
-    setConfirmed(false);
-  } finally {
-    setIsLaunching(false); // ferma il razzo
-  }
-};
-
+      setConfirmed(true);
+      setError(false);
+    } catch (err) {
+      console.error(err);
+      setError(true);
+      setConfirmed(false);
+    } finally {
+      setIsLaunching(false); // ferma il razzo
+    }
+  };
 
   return (
     <Container>
@@ -395,10 +392,10 @@ const handleSubmit = async (e: React.FormEvent) => {
 
           <ButtonGrid>
             <Button type="button" onClick={() => addPartecipante("Adulto")}>
-              ➕ Adulto
+              Adulto ➕
             </Button>
             <Button type="button" onClick={() => addPartecipante("Bambino")}>
-              ➕ Bambino
+              Bambino ➕
             </Button>
           </ButtonGrid>
           <Field>
