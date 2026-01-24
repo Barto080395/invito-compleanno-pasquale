@@ -14,7 +14,7 @@ const ConfettiContainer = styled.div`
   height: 100%;
   pointer-events: none;
   overflow: hidden;
-  z-index: 999; 
+  z-index: 9999; 
 `;
 
 const Confetto = styled.div<{ left: number; delay: number; size: number }>`
