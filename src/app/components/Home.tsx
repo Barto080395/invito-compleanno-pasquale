@@ -50,7 +50,7 @@ const glowDate = keyframes`
    CONTAINER
 ======================= */
 
-export const Container = styled.div`
+const Container = styled.div`
   position: relative;
   text-align: center;
   font-family: "Comic Neue", cursive, sans-serif;
@@ -65,12 +65,12 @@ export const Container = styled.div`
   gap: 1.5rem;
 
   &::before {
-    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(255, 255, 255, 0);
     z-index: 0;
   }
 `;
