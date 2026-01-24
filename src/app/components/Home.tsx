@@ -73,11 +73,6 @@ export const Container = styled.div`
     height: 100%;
     z-index: 0;
   }
-
-  > * {
-    position: relative;
-    z-index: 1;
-  }
 `;
 
 /* =======================
