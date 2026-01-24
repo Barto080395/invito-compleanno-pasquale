@@ -2,8 +2,8 @@ import styled, { keyframes } from "styled-components";
 
 
 const pulseGlow = keyframes`
-  0%, 100% { transform: scale(1); box-shadow: 0 0 5px rgba(255, 20, 147, 0.5); }
-  50% { transform: scale(1.08); box-shadow: 0 0 20px rgba(255, 20, 147, 0.8); }
+  0%, 100% { transform: scale(1); box-shadow: 0 0 5px rgba(212, 175, 55, 0.5); }
+  50% { transform: scale(1.08); box-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
 `;
 
 const MessageContainer = styled.div.withConfig({
@@ -21,12 +21,12 @@ const MessageContainer = styled.div.withConfig({
   color: ${({ success, error }) => (success ? "#fff" : error ? "#d93025" : "#333")};
   background: ${({ success, error }) =>
     success
-      ? "linear-gradient(135deg, #ff69b4, #ff1493, #ff85b1)"
+      ? "linear-gradient(135deg, #d4af37, #f5e06b, #d4af37)" /* oro tenue */
       : error
-      ? "linear-gradient(135deg, #fce8e6, #f8c5c0)"
-      : "#f0f0f0"};
+      ? "linear-gradient(135deg, #fce8e6, #f8c5c0)" /* mantengo rosso chiaro per error */
+      : "#0a2540"}; /* blu scuro neutro */
   box-shadow: ${({ success }) =>
-    success ? "0 0 15px rgba(255,20,147,0.6), 0 0 30px rgba(255,105,180,0.4)" : "0 6px 20px rgba(0,0,0,0.15)"};
+    success ? "0 0 15px rgba(212,175,55,0.6), 0 0 30px rgba(212,175,55,0.4)" : "0 6px 20px rgba(0,0,0,0.15)"};
   animation: ${({ success }) => (success ? pulseGlow : "none")} 1.5s infinite;
   text-align: center;
   border: ${({ success }) => (success ? "1px solid #fff" : "none")};
@@ -39,10 +39,11 @@ const Icon = styled.span.withConfig({
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ success, error }) => (success ? "#fff" : error ? "#d93025" : "#333")};
-  text-shadow: ${({ success }) => (success ? "0 0 8px #fff, 0 0 15px #ff69b4" : "0 1px 2px rgba(0,0,0,0.2)")};
+  color: ${({ success, error }) => (success ? "#fff" : error ? "#d93025" : "#f8fafc")};
+  text-shadow: ${({ success }) => (success ? "0 0 8px #fff, 0 0 15px rgba(212,175,55,0.6)" : "0 1px 2px rgba(0,0,0,0.2)")};
   animation: ${({ success }) => (success ? "pulse 1.5s infinite" : "none")};
 `;
+
 
 type StatusMessageProps = {
   success?: boolean;

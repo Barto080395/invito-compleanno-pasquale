@@ -56,7 +56,7 @@ Intolleranze / Allergie: ${p.intolerance}`
     await transporter.sendMail({
       from: "bartolomeo.braccio@libero.it",
       to: "bartolomeo.braccio@libero.it",
-      subject: "RSVP Compleanno Rossella",
+      subject: "RSVP Compleanno Pasquale!",
       text: `✅ Nuova conferma RSVP:
 
 ${partecipantiText}

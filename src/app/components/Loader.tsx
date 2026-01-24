@@ -15,14 +15,14 @@ const LoaderWrapper = styled.div<{ bgColor?: string }>`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: ${(props) => props.bgColor || "#ffe6f0"};
+  background-color: ${(props) => props.bgColor || "#0a2540"}; /* blu scuro */
 `;
 
 // Cerchio che contiene i dots
 const Spinner = styled.div`
   position: relative;
-  width: 60px; /* ridotto */
-  height: 60px; /* ridotto */
+  width: 60px;
+  height: 60px;
   animation: ${spin} 1s linear infinite;
 `;
 
@@ -34,11 +34,12 @@ const Dot = styled.div<{ size: number; angle: number; color?: string }>`
   width: ${(props) => props.size}px;
   height: ${(props) => props.size}px;
   margin: -${(props) => props.size / 2}px 0 0 -${(props) => props.size / 2}px;
-  background-color: ${(props) => props.color || "#ff1493"};
+  background-color: ${(props) => props.color || "#d4af37"}; /* oro tenue */
   border-radius: 50%;
-  transform: rotate(${(props) => props.angle}deg) translate(20px) /* raggio minore */ rotate(-${(props) => props.angle}deg);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transform: rotate(${(props) => props.angle}deg) translate(20px) rotate(-${(props) => props.angle}deg);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.6); /* ombra oro soft */
 `;
+
 
 type LoaderProps = {
   bgColor?: string;

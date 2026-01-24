@@ -20,7 +20,7 @@ const Container = styled.div`
   align-items: center;
   padding: 3rem 1rem;
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffd6e0, #ffc0cb, #ffe0b2, #ffd1dc);
+  background: linear-gradient(135deg, #0a2540, #1e3a8a, #0a2540, #1e3a8a);
   background-size: 400% 400%;
   animation: ${gradientAnimation} 15s ease infinite;
 `;
@@ -28,10 +28,10 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 2rem;
   font-weight: 700;
-  color: #ff1493;
+  color: #f8fafc; /* bianco soft */
   margin-bottom: 2rem;
   text-align: center;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
 `;
 
 const Form = styled.form`
@@ -43,44 +43,43 @@ const Form = styled.form`
   margin: 2rem auto;
   padding: 2rem;
   border-radius: 15px;
-  background: linear-gradient(135deg, #ffd6e0, #ffc0cb, #ffe0b2, #ffd1dc);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 1.5);
+  background: rgba(10, 37, 64, 0.6); /* overlay blu scuro */
+  box-shadow: 0 10px 25px rgba(10, 37, 64, 0.7);
   transition: all 0.3s ease;
 `;
 
 const Field = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.8rem; /* aumenta lo spazio tra label e input */
-  margin-bottom: 1rem; /* distanza tra i field */
+  gap: 0.8rem;
+  margin-bottom: 1rem;
 `;
 
 const Label = styled.label`
   font-weight: 600;
   font-size: 1rem;
-  color: #e92b8aff;
+  color: #d4af37; /* oro tenue */
   margin-left: 10px;
 `;
 
 const Input = styled.input`
   padding: 0.85rem 1rem;
   border-radius: 14px;
-  border: 2px solid #ffb6c1;
+  border: 2px solid #1e3a8a; /* blu istituzionale */
   font-size: 1rem;
   outline: none;
   transition: all 0.25s ease;
 
   &:focus {
-    border-color: #ff1493;
-    box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+    border-color: #d4af37; /* oro tenue */
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
   }
 `;
 
-//appearance: none; toglie tutti default di stile della select
 const Select = styled.select`
   padding: 0.85rem 1rem;
   border-radius: 14px;
-  border: 2px solid #ffb6c1;
+  border: 2px solid #1e3a8a;
   font-size: 1rem;
   outline: none;
   transition: all 0.25s ease;
@@ -92,15 +91,15 @@ const Select = styled.select`
   background-size: 2rem;
 
   &:focus {
-    border-color: #ff1493;
-    box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+    border-color: #d4af37;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
   }
 `;
 
 const Textarea = styled.textarea`
   padding: 1rem;
   border-radius: 14px;
-  border: 2px solid #ffb6c1;
+  border: 2px solid #1e3a8a;
   font-size: 1rem;
   min-height: 100px;
   resize: vertical;
@@ -108,8 +107,8 @@ const Textarea = styled.textarea`
   transition: all 0.25s ease;
 
   &:focus {
-    border-color: #ff1493;
-    box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
+    border-color: #d4af37;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
   }
 `;
 
@@ -119,13 +118,13 @@ const ButtonGrid = styled.div`
   gap: 1rem;
 
   @media (max-width: 435px) {
-    grid-template-columns: 1fr; /* forza una colonna sotto i 420px */
+    grid-template-columns: 1fr;
   }
 `;
 
 const Button = styled.button`
-  position: relative; /* 🔥 fondamentale per il posizionamento del razzo */
-  overflow: visible; /* assicura che il razzo non venga tagliato */
+  position: relative;
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,20 +132,19 @@ const Button = styled.button`
   padding: 0.7rem 0.9rem;
   border-radius: 16px;
   border: none;
-  background: linear-gradient(45deg, #ff69b4, #ff1493, #ff85b1, #ff69b4);
+  background: linear-gradient(45deg, #0a2540, #1e3a8a, #d4af37, #0a2540);
   background-size: 400% 400%;
-  color: #fff;
+  color: #f8fafc;
   font-weight: 700;
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 -3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(10, 37, 64, 0.5), inset 0 -3px 5px rgba(0, 0, 0, 0.2);
 
   &:hover {
     transform: scale(1.08);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6),
-      inset 0 -3px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 25px rgba(10, 37, 64, 0.6), inset 0 -3px 8px rgba(212, 175, 55, 0.3);
   }
 `;
 
@@ -154,30 +152,30 @@ const ButtonRemove = styled.button`
   padding: 0.7rem 1.5rem;
   border-radius: 16px;
   border: none;
-  background: linear-gradient(45deg, #ff69b4, #ff1493, #ff85b1, #ff69b4);
+  background: linear-gradient(45deg, #0a2540, #1e3a8a, #d4af37, #0a2540);
   background-size: 400% 400%;
-  color: #fff;
+  color: #f8fafc;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 -3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(10, 37, 64, 0.5), inset 0 -3px 5px rgba(0, 0, 0, 0.2);
 
   &:hover {
     transform: scale(1.08);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6),
-      inset 0 -3px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 25px rgba(10, 37, 64, 0.6), inset 0 -3px 8px rgba(212, 175, 55, 0.3);
   }
 `;
 
 const ParticipantCard = styled.div`
-  border: 1px solid #ffb6c1;
+  border: 1px solid #1e3a8a;
   border-radius: 14px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 5px 20px rgba(255, 20, 147, 1);
+  background: rgba(10, 37, 64, 0.6);
+  box-shadow: 0 5px 20px rgba(10, 37, 64, 0.7);
 `;
+
 
 export type Partecipante = {
   id: number;

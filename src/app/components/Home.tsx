@@ -6,6 +6,10 @@ import RSVPForm from "./RSVPForm";
 import Image from "next/image";
 import { ConfettiComponent } from "./Confetto";
 
+/* =======================
+   ANIMAZIONI
+======================= */
+
 const bounce = keyframes`
   0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
   40% { transform: translateY(-15px); }
@@ -25,12 +29,28 @@ const pulse = keyframes`
 `;
 
 const glow = keyframes`
-  0% { box-shadow: 0 0 10px #ff69b4; }
-  50% { box-shadow: 0 0 25px #ff1493; }
-  100% { box-shadow: 0 0 10px #ff69b4; }
+  0% { box-shadow: 0 0 10px #d4af37; }  /* oro tenue */
+  50% { box-shadow: 0 0 25px #d4af37; } /* oro più intenso */
+  100% { box-shadow: 0 0 10px #d4af37; }
 `;
 
-const Container = styled.div`
+const bounceNumber = keyframes`
+  0%, 50%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-10px); }
+  75% { transform: translateY(-5px); }
+`;
+
+const glowDate = keyframes`
+  0% { text-shadow: 0 0 5px #d4af37; }
+  50% { text-shadow: 0 0 15px #d4af37; }
+  100% { text-shadow: 0 0 5px #d4af37; }
+`;
+
+/* =======================
+   CONTAINER
+======================= */
+
+export const Container = styled.div`
   position: relative;
   text-align: center;
   font-family: "Comic Neue", cursive, sans-serif;
@@ -45,120 +65,150 @@ const Container = styled.div`
   gap: 1.5rem;
 
   &::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0);
     z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
   }
 `;
 
-const Title = styled.h1`
+/* =======================
+   TITLE
+======================= */
+
+export const Title = styled.h1`
   font-size: 2.5rem;
-  color: #ff1493;
-  text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+  color: #f8fafc; /* bianco soft su sfondo scuro */
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.7);
   animation: ${bounce} 2s infinite, ${scaleTitle} 3s infinite alternate;
 `;
 
-const bounceNumber = keyframes`
-  0%, 50%, 100% { transform: translateY(0); }
-  25% { transform: translateY(-10px); }
-  75% { transform: translateY(-5px); }
-`;
+/* =======================
+   BIGONE (60°)
+======================= */
 
-const BigOne = styled.div`
+export const BigOne = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
   font-style: italic;
   text-decoration: underline;
-  text-underline-offset: 10px;
-  color: #ff1493;
-  text-shadow: 0 0 25px rgba(255, 20, 147, 0.8),
-    0 0 50px rgba(255, 105, 180, 0.6);
-  animation: ${bounceNumber} 2s infinite;
+  text-underline-offset: 8px;
+  color: #d4af37; /* oro tenue */
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6),
+               0 0 20px rgba(212, 175, 55, 0.4);
+  animation: ${bounceNumber} 3s infinite alternate;
 `;
+
+/* =======================
+   MESSAGE
+======================= */
 
 export const Message = styled.p`
   font-size: 1.3rem;
   font-weight: 500;
-  color: #444;
+  color: #f8fafc; /* bianco soft */
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.5;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 1.5);
-  background: linear-gradient(135deg, #ffd6e0, #ffc0cb, #ffe0b2, #ffd1dc);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  background: rgba(10, 37, 64, 0.6); /* overlay blu scuro semitrasparente */
 `;
 
-const Photo = styled.div`
+/* =======================
+   PHOTO
+======================= */
+
+export const Photo = styled.div`
   width: 220px;
   height: 220px;
   border-radius: 50%;
   overflow: hidden;
-  border: 5px solid #ffb6c1;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border: 5px solid #d4af37; /* oro tenue */
+  box-shadow: 0 10px 25px rgba(10, 37, 64, 0.7);
   animation: ${pulse} 3s infinite alternate;
-  margin: 0 auto; /* forza la centratura */
+  margin: 0 auto;
 
   img {
     width: 20rem;
     height: 100%;
     object-fit: cover;
-    display: block; /* evita spazi strani */
+    display: block;
   }
 `;
 
-const glowDate = keyframes`
-  0% { text-shadow: 0 0 5px #ff1493; }
-  50% { text-shadow: 0 0 15px #ff69b4; }
-  100% { text-shadow: 0 0 5px #ff1493; }
-`;
+/* =======================
+   DATEINFO
+======================= */
 
-const DateInfo = styled.p`
+export const DateInfo = styled.p`
   font-size: 1.7rem;
-  color: #ff1493; /* rosa acceso */
+  color: #d4af37; /* oro tenue */
   font-weight: bold;
-  text-shadow: 2px 2px 10px rgba(255, 20, 147, 0.7);
+  text-shadow: 1px 1px 8px rgba(212, 175, 55, 0.7);
   animation: ${glowDate} 2s infinite alternate;
 `;
 
-const CountdownWrapper = styled.div`
+/* =======================
+   COUNTDOWNWRAPPER
+======================= */
+
+export const CountdownWrapper = styled.div`
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #ff9de2, #ff1493);
+  background: linear-gradient(135deg, #0a2540, #1e3a8a); /* blu istituzionale */
   border-radius: 20px;
-  color: #fff;
+  color: #d4af37; /* oro tenue */
   font-size: 1.5rem;
   animation: ${glow} 2s infinite alternate;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 1);
+  box-shadow: 0 10px 25px rgba(10, 37, 64, 0.5), 0 5px 15px rgba(212, 175, 55, 0.2);
 `;
 
-const RSVPWrapper = styled.div`
+/* =======================
+   RSVPWRAPPER
+======================= */
+
+export const RSVPWrapper = styled.div`
   width: 100%;
   max-width: 400px;
 `;
 
-const Location = styled.a`
+/* =======================
+   LOCATION
+======================= */
+
+export const Location = styled.a`
   font-size: 1.2rem;
-  color: #000000ff;
+  color: #f8fafc; /* bianco soft */
   cursor: pointer;
-  background: linear-gradient(135deg, #ffd6e0, #ffc0cb, #ffe0b2, #ffd1dc);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 1.5);
+  background: rgba(10, 37, 64, 0.6); /* overlay blu scuro */
+  box-shadow: 0 10px 25px rgba(10, 37, 64, 0.5);
+
   &:hover {
-    color: #ff1493;
+    color: #d4af37; /* oro tenue */
     text-decoration: underline;
+    transform: scale(1.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 25px rgba(10, 37, 64, 0.5), 0 5px 15px rgba(212, 175, 55, 0.2);
   }
 `;
 
+
 export default function Home() {
-  const targetDate = "2026-01-18T13:00:00";
+  const targetDate = "2026-02-26T20:00:00";
 
   return (
     <Container>
-      <Title>Il primo compleanno di Rossella! 🥳🎉</Title>
+      <Title>60° Compleanno di Pasquale! 🥳🎉</Title>
       <Photo>
         <Image
-          src="/rosa.jpeg"
+          src="/sfondoA.jpg"
           alt="Rossella"
           width={220}
           height={220}
@@ -167,13 +217,14 @@ export default function Home() {
         />
       </Photo>
       <Message>
-        Vuoi venire al mio primo compleanno? 🎂 Ti aspetto con tanta gioia, non
-        mancare! 💖 Sarà una festa piena di sorrisi e divertimento! ✨
+        Ti invito a condividere con me questo compleanno speciale 🎂 Sarà un
+        momento importante da vivere insieme, tra ricordi, sorrisi e amicizia.
+        La tua presenza mi farebbe davvero piacere! ✨
       </Message>
-      <DateInfo>18 Gennaio 2026 ore 13:00</DateInfo>
+      <DateInfo>26 Febbraio 2026 ore 20:00</DateInfo>
       <CountdownWrapper>
         <Countdown targetDate={targetDate} />
-        <BigOne>1° Anno! 🎈</BigOne>
+        <BigOne>60°</BigOne>
       </CountdownWrapper>
       <RSVPWrapper>
         <RSVPForm />

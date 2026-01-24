@@ -53,10 +53,10 @@ const Dot = styled.div<{ size: number; angle: number }>`
   width: ${(props) => props.size}px;
   height: ${(props) => props.size}px;
   margin: -${(props) => props.size / 2}px 0 0 -${(props) => props.size / 2}px;
-  background-color: #ff1493;
+  background-color: ${(props) => props.color || "gold"}; /* oro tenue */
   border-radius: 50%;
   transform: rotate(${(props) => props.angle}deg) translate(25px) rotate(-${(props) => props.angle}deg);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 1d); /* glow oro */
 `;
 
 type LoaderProps = {
@@ -106,7 +106,7 @@ const Page = () => {
       {/* Background full-screen */}
       <BackgroundWrapper>
         <Image
-          src="/festa.jpg"
+          src="/sfondoA.jpg"
           alt="Sfondo festa"
           fill
           style={{ objectFit: "cover" }}
