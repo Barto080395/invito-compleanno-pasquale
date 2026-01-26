@@ -124,7 +124,7 @@ const Tooltip = styled.div`
 
   /* 📱 Smartphone */
   @media (max-width: 480px) {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     padding: 0.3rem 0.5rem;
   }
 `;
