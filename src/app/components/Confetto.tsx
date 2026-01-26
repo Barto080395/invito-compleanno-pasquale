@@ -46,7 +46,7 @@ export const ConfettiComponent = () => {
           i: number
         ) => (
           <Confetto key={i} left={c.left} delay={c.delay} size={c.size}>
-            ✈️
+            🎖️
           </Confetto>
         )
       )}

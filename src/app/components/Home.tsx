@@ -5,6 +5,7 @@ import Countdown from "./Countdown";
 import RSVPForm from "./RSVPForm";
 import Image from "next/image";
 import { ConfettiComponent } from "./Confetto";
+import { useState } from "react";
 
 /* =======================
    ANIMAZIONI
@@ -80,11 +81,48 @@ const Container = styled.div`
 ======================= */
 
 export const Title = styled.h1`
+  position: relative;
+  z-index: 20;
+
   font-size: 2.5rem;
-  color: #f8fafc; /* bianco soft su sfondo scuro */
+  color: #f8fafc;
   text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.7);
   animation: ${bounce} 2s infinite, ${scaleTitle} 3s infinite alternate;
 `;
+
+
+const PilotWrapper = styled.span`
+  position: relative;
+  display: inline-block;
+`;
+
+const PilotEmoji = styled.span`
+  cursor: pointer;
+  font-size: 2.2rem;
+  margin: 0 0.3rem;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
+const Tooltip = styled.div`
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: rgba(10, 37, 64, 0.95);
+  color: #d4af37;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+
+  z-index: 100;
+`;
+
 
 /* =======================
    BIGONE (60°)
@@ -98,7 +136,7 @@ export const BigOne = styled.div`
   text-underline-offset: 8px;
   color: #d4af37; /* oro tenue */
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.6),
-               0 0 20px rgba(212, 175, 55, 0.4);
+    0 0 20px rgba(212, 175, 55, 0.4);
   animation: ${bounceNumber} 3s infinite alternate;
 `;
 
@@ -122,6 +160,8 @@ export const Message = styled.p`
 ======================= */
 
 export const Photo = styled.div`
+position: relative;
+z-index: 5;
   width: 220px;
   height: 220px;
   border-radius: 50%;
@@ -162,7 +202,8 @@ export const CountdownWrapper = styled.div`
   color: #d4af37; /* oro tenue */
   font-size: 1.5rem;
   animation: ${glow} 2s infinite alternate;
-  box-shadow: 0 10px 25px rgba(10, 37, 64, 0.5), 0 5px 15px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 10px 25px rgba(10, 37, 64, 0.5),
+    0 5px 15px rgba(212, 175, 55, 0.2);
 `;
 
 /* =======================
@@ -190,21 +231,29 @@ export const Location = styled.a`
     text-decoration: underline;
     transform: scale(1.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 10px 25px rgba(10, 37, 64, 0.5), 0 5px 15px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 10px 25px rgba(10, 37, 64, 0.5),
+      0 5px 15px rgba(212, 175, 55, 0.2);
   }
 `;
 
-
 export default function Home() {
+  const [showTip, setShowTip] = useState(false);
   const targetDate = "2026-02-26T20:00:00";
 
   return (
     <Container>
-      <Title>60° Compleanno di Pasquale! 🥳🎉</Title>
+      <Title>
+        60° Compleanno di Pasquale!{" "}
+        <PilotWrapper>
+          <PilotEmoji onClick={() => setShowTip(!showTip)}>👨‍✈️</PilotEmoji>
+          {showTip && <Tooltip>Pasquale, fai i bagagli!! ✈️</Tooltip>}
+        </PilotWrapper>
+      </Title>
+
       <Photo>
         <Image
           src="/sfondoA.jpg"
-          alt="Rossella"
+          alt="Pasquale"
           width={220}
           height={220}
           style={{ objectFit: "cover" }}
@@ -219,7 +268,6 @@ export default function Home() {
       <DateInfo>26 Febbraio 2026 ore 20:00</DateInfo>
       <CountdownWrapper>
         <Countdown targetDate={targetDate} />
-        <BigOne>60°</BigOne>
       </CountdownWrapper>
       <RSVPWrapper>
         <RSVPForm />
