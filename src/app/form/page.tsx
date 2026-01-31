@@ -6,6 +6,8 @@ import { ConfettiComponent } from "../components/Confetto";
 import { StatusMessage } from "../components/Message";
 import Link from "next/link";
 import Rocket from "../components/Rocket";
+import { MenuPreview } from "../components/MenuPreview";
+
 
 // Animazione gradienti
 const gradientAnimation = keyframes`
@@ -287,6 +289,7 @@ export default function FormPage() {
       {!confirmed && !error && (
         <Form onSubmit={handleSubmit}>
           <Title>Conferma la tua presenza 🎉</Title>
+          <MenuPreview/>
           {partecipanti.map((p) => (
             <ParticipantCard key={p.id}>
               <Field>

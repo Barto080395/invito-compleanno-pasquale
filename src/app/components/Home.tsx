@@ -90,7 +90,6 @@ export const Title = styled.h1`
   animation: ${bounce} 2s infinite, ${scaleTitle} 3s infinite alternate;
 `;
 
-
 const PilotWrapper = styled.span`
   position: relative;
   display: inline-block;
@@ -129,8 +128,6 @@ const Tooltip = styled.div`
   }
 `;
 
-
-
 /* =======================
    BIGONE (60°)
 ======================= */
@@ -167,8 +164,8 @@ export const Message = styled.p`
 ======================= */
 
 export const Photo = styled.div`
-position: relative;
-z-index: 5;
+  position: relative;
+  z-index: 5;
   width: 220px;
   height: 220px;
   border-radius: 50%;
@@ -250,7 +247,7 @@ export default function Home() {
   return (
     <Container>
       <Title>
-        60° Compleanno di Pasquale!{" "}
+        60° Compleanno! 🎉 + Fine Servizio
         <PilotWrapper>
           <PilotEmoji onClick={() => setShowTip(!showTip)}>👨‍✈️</PilotEmoji>
           {showTip && <Tooltip>Pasquale, fai i bagagli!! ✈️</Tooltip>}
@@ -259,7 +256,7 @@ export default function Home() {
 
       <Photo>
         <Image
-          src="/sfondoA.jpg"
+          src="/BelvedereAttilio.jpg"
           alt="Pasquale"
           width={220}
           height={220}
@@ -280,12 +277,13 @@ export default function Home() {
         <RSVPForm />
       </RSVPWrapper>
       <Location
-        href="https://www.google.com/maps?q=Hosteria+Mamma+Rosa,+81041+Triflisco+CE,+Italia"
+        href="https://www.google.com/maps?q=Ristorante+Belvedere,+Via+Lepanto,+62017+Porto+Recanati+MC,+Italia"
         target="_blank"
         rel="noopener noreferrer"
       >
-        📍 Hostaria Mamma Rosa, 19, Triflisco (Bellona) CE, Italia
+        📍 Via Lepanto, Ristorante Belvedere, 62017 Porto Recanati MC
       </Location>
+
       <ConfettiComponent />
     </Container>
   );
