@@ -83,19 +83,21 @@ export const MenuPreview = () => {
 
       {open && (
         <PreviewText>
-          La serata inizia con un <Highlight>antipreso freddo</Highlight>:
-          <Highlight> polpo all’insalata</Highlight>, seguito da antipasti
-          caldi:
-          <Highlight> gamberi in pasta kataifi</Highlight>,{" "}
-          <Highlight>gratinati misti (capesante, cannolicchi)</Highlight> e{" "}
+          La serata inizia con un antipasto freddo:{" "}
+          <Highlight>polpo all’insalata e gamberi in pasta kataifi.</Highlight>
+          <br />
+          Segue la portata degli antipasti caldi:{" "}
+          <Highlight>gratinati misti (capesante, cannolicchi) e {" "}</Highlight>
           <Highlight>moscardini al guazzetto</Highlight>.<br />
           Come primo piatto,{" "}
-          <Highlight>risotto allo zafferano con crostacei e lime</Highlight>,
-          mentre per il secondo{" "}
+          <Highlight>risotto allo zafferano con crostacei e lime</Highlight>.
+          <br />
+          Per il secondo,{" "}
           <Highlight>frittura mista con verdure pastellate</Highlight>.<br />
           Per concludere, <Highlight>dolce della casa</Highlight> e frutta
-          fresca: <Highlight>ananas e kiwi</Highlight>.<br />
-          Il tutto sarà accompagnato da caffè, amaro e dal vino{" "}
+          fresca:{" "}
+          <Highlight>ananas e kiwi</Highlight>.<br />
+          Il tutto sarà accompagnato da caffè, amaro e vino{" "}
           <Highlight>Pascorino</Highlight>.
         </PreviewText>
       )}

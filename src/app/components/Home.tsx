@@ -247,10 +247,10 @@ export default function Home() {
   return (
     <Container>
       <Title>
-        60° Compleanno! 🎉 + Fine Servizio
+      60° Compleanno 🎉 – Fine Servizio 
         <PilotWrapper>
           <PilotEmoji onClick={() => setShowTip(!showTip)}>👨‍✈️</PilotEmoji>
-          {showTip && <Tooltip>Pasquale, fai i bagagli!! ✈️</Tooltip>}
+          {showTip && <Tooltip>Pasquale, fai i bagagli!! 🚍</Tooltip>}
         </PilotWrapper>
       </Title>
 
@@ -277,11 +277,11 @@ export default function Home() {
         <RSVPForm />
       </RSVPWrapper>
       <Location
-        href="https://www.google.com/maps?q=Ristorante+Belvedere,+Via+Lepanto,+62017+Porto+Recanati+MC,+Italia"
+        href="https://www.google.com/maps?q=Ristorante+Balneare+Attilio,+Via+Lepanto,+62017+Porto+Recanati+MC,+Italia"
         target="_blank"
         rel="noopener noreferrer"
       >
-        📍 Via Lepanto, Ristorante Belvedere, 62017 Porto Recanati MC
+        📍 Via Lepanto, Ristorante Balneare Attilio, 62017 Porto Recanati MC
       </Location>
 
       <ConfettiComponent />

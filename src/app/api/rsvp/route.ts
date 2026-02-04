@@ -14,19 +14,30 @@ export async function POST(req: NextRequest) {
 
     // Controllo partecipanti
     if (!partecipanti || partecipanti.length === 0) {
-      return NextResponse.json({ message: "Nessun partecipante fornito" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Nessun partecipante fornito" },
+        { status: 400 }
+      );
     }
 
     // Controllo che tutti i partecipanti abbiano nome e cognome
-    const invalidPartecipanti = partecipanti.filter((p) => !p.name || !p.surname);
+    const invalidPartecipanti = partecipanti.filter(
+      (p) => !p.name || !p.surname
+    );
     if (invalidPartecipanti.length > 0) {
-      return NextResponse.json({ message: "Tutti i partecipanti devono avere nome e cognome" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Tutti i partecipanti devono avere nome e cognome" },
+        { status: 400 }
+      );
     }
 
     // Controllo email password
     if (!process.env.EMAIL_PASSWORD) {
       console.error("EMAIL_PASSWORD non impostata!");
-      return NextResponse.json({ message: "Password email non configurata" }, { status: 500 });
+      return NextResponse.json(
+        { message: "Password email non configurata" },
+        { status: 500 }
+      );
     }
 
     // Inizializzazione nodemailer
@@ -35,7 +46,7 @@ export async function POST(req: NextRequest) {
       port: 465,
       secure: true, // true per 465
       auth: {
-        user: "bartolomeo.braccio@libero.it",
+        user: "schiavopasquale66@gmail.com",
         pass: process.env.EMAIL_PASSWORD,
       },
     });
@@ -54,8 +65,8 @@ Intolleranze / Allergie: ${p.intolerance}`
 
     // Invio email
     await transporter.sendMail({
-      from: "bartolomeo.braccio@libero.it",
-      to: "bartolomeo.braccio@libero.it",
+      from: "schiavopasquale66@gmail.com",
+      to: "schiavopasquale66@gmail.com",
       subject: "RSVP Compleanno Pasquale!",
       text: `✅ Nuova conferma RSVP:
 
@@ -68,6 +79,9 @@ ${partecipantiText}
     return NextResponse.json({ message: "Mail inviata!" });
   } catch (error) {
     console.error("Errore invio mail:", error);
-    return NextResponse.json({ message: "Errore invio mail", error }, { status: 500 });
+    return NextResponse.json(
+      { message: "Errore invio mail", error },
+      { status: 500 }
+    );
   }
 }
