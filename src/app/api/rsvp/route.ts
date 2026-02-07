@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
       port: 465,
       secure: true, // true per 465
       auth: {
-        user: "schiavopasquale66@gmail.com",
+        user: "pasqualeschiavo66@libero.it",
         pass: process.env.EMAIL_PASSWORD,
       },
     });
@@ -65,8 +65,8 @@ Intolleranze / Allergie: ${p.intolerance}`
 
     // Invio email
     await transporter.sendMail({
-      from: "schiavopasquale66@gmail.com",
-      to: "schiavopasquale66@gmail.com",
+      from: "pasqualeschiavo66@libero.it",
+      to: "pasqualeschiavo66@libero.it",
       subject: "RSVP Compleanno Pasquale!",
       text: `✅ Nuova conferma RSVP:
 
